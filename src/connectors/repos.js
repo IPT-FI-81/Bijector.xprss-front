@@ -14,14 +14,19 @@ class WFRepo extends EventEmitter {
                     'Bearer': process.env.OAUTH_ACCESS_TOKEN
                 }
             };
-            request(config,(err, res, body) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    console.log('WFRepo.getAll res body:', body);
-                    resolve(body)
-                }
-            })
+            try {
+                request(config,(err, res, body) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        console.log('WFRepo.getAll res body:', body);
+                        resolve(body)
+                    }
+                })
+            } catch (e) {
+                reject(e)
+            }
+
         })
     }
 }

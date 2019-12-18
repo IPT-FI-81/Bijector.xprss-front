@@ -13,6 +13,10 @@ router.get('/', function (req, res, next) {
                 title: `Dashboard (${req.session.token})`,
                 workflows: wfs
             })
+        }).catch(err => {
+            res.locals.message = err.message;
+            res.locals.error = req.app.get('env') === 'development' ? err : {};
+            res.render('error')
         });
     } else {
         res.render('index', {title: 'This is Bijector.'});

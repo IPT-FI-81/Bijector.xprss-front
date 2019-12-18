@@ -13,7 +13,7 @@ module.exports.getToken = function (username, password) {
     return userdb.getBy('username', username).then(user => {
         if (!user[0]) return false;
         if (password === user[0].password) {
-            return username + '_token';
+            return process.env.OAUTH_ACCESS_TOKEN;
         }
         return false;
     })
@@ -27,7 +27,7 @@ module.exports.isAuthenticated = function (req, res, next) {
         let token = req.session.token;
         let username = req.session.username;
         userdb.getBy('username', username).then(u => {
-            req.isAuthenticated = token === username + '_token';
+            req.isAuthenticated = token === process.env.OAUTH_ACCESS_TOKEN;
             next();
         })
     }

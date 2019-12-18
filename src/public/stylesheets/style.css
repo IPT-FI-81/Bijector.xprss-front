@@ -42,6 +42,11 @@ a {
   border-color: crimson;
 }
 
+.error {
+  color: crimson;
+  padding: 5px;
+}
+
 .dash-wf-container {
   padding: 10px;
   border-bottom: 1px solid black;
@@ -53,6 +58,7 @@ a {
 }
 .field {
   margin: 0.2rem;
+  padding-left: 0.2rem;
   border-left: 1px solid black;
 }
 .service-field {

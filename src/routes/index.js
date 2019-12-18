@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const debug = require('debug')('routes:index');
 const auth = require('../helpers/auth');
-const db = require('../connectors/fakeback');
+const db = require('../connectors/repos');
 
 /* GET dashboard or index. */
 router.get('/', function (req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated) {
         console.debug(`user ${req.session.username} is authenticated`);
-        workflows = db.MockWorkflowRepo.getAll().then(wfs => {
+        db.WorkflowRepo.getAll().then(wfs => {
             res.render('dashboard', {
-                title: `Dashboard (${req.openid.user.name})`,
+                title: `Dashboard (${req.session.token})`,
                 workflows: wfs
             })
         });
@@ -19,10 +19,10 @@ router.get('/', function (req, res, next) {
     }
 });
 
-// router.get('/logout', (req, res) => {
-//     req.session = null;
-//     res.redirect('/');
-// });
+router.get('/logout', (req, res) => {
+    req.session = null;
+    res.redirect('/');
+});
 
 const loginform = {
     action: "/login",
@@ -32,14 +32,14 @@ const loginform = {
         { type: "password", name: "password", label: "password" },
     ]
 };
-//
-// router.get('/login', function (req, res) {
-//     if (req.isAuthenticated()) {
-//         res.redirect('/');
-//         return;
-//     }
-//     res.render('login', {title: 'Login', form: loginform})
-// });
+
+router.get('/login', function (req, res) {
+    if (req.isAuthenticated) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login', {title: 'Login', form: loginform})
+});
 
 router.post('/login', (req, res) => {
     if (req.body.username && req.body.password) {

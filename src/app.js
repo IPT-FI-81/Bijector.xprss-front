@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('cookie-session');
-const {auth, requiresAuth} = require('express-openid-connect');
+// const {auth, requiresAuth} = require('express-openid-connect');
 
 const crypto = require('crypto');
 
@@ -33,33 +33,33 @@ app.use(session({
     saveUninitialized: false
 }));
 
-// const asyncHandler = fn => (req, res, next) =>
-//     Promise
-//         .resolve(fn(req, res, next))
-//         .catch(next);
-//
+const asyncHandler = fn => (req, res, next) =>
+    Promise
+        .resolve(fn(req, res, next))
+        .catch(next);
+
 // Auth
-// const auth = require('./helpers/auth');
-// app.use(asyncHandler(auth.isAuthenticated));
+const auth = require('./helpers/auth');
+app.use(asyncHandler(auth.isAuthenticated));
 
+//
+// app.use(auth({
+//   required: false,
+//   // auth0Logout: true,
+//   baseURL: 'http://localhost:3000',
+//   issuerBaseURL: 'http://localhost:5000',
+//   clientID: 'bijector.ng-front',
+//   authorizationParams: {
+//     response_type: "id_token token",
+//     scope: "openid profile api.v1"
+//   }
+// }));
 
-app.use(auth({
-  required: false,
-  // auth0Logout: true,
-  baseURL: 'http://localhost:3000',
-  issuerBaseURL: 'http://localhost:5000',
-  clientID: 'bijector.ng-front',
-  authorizationParams: {
-    response_type: "id_token token",
-    scope: "openid profile api.v1"
-  }
-}));
-
-// Middleware to make the `user` object available for all views
-app.use(function (req, res, next) {
-    res.locals.user = req.openid.user;
-    next();
-});
+// // Middleware to make the `user` object available for all views
+// app.use(function (req, res, next) {
+//     res.locals.user = req.openid.user;
+//     next();
+// });
 
 // Index and Dashboard
 app.use('/', indexRouter);

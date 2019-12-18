@@ -8,7 +8,7 @@ const db = require('../connectors/fakeback');
 router.get('/', function (req, res, next) {
     if (req.isAuthenticated()) {
         console.debug(`user ${req.session.username} is authenticated`);
-        workflows = db.WorkflowRepo.getAll().then(wfs => {
+        workflows = db.MockWorkflowRepo.getAll().then(wfs => {
             res.render('dashboard', {
                 title: `Dashboard (${req.openid.user.name})`,
                 workflows: wfs

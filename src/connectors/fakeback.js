@@ -113,9 +113,9 @@ class WFRepo extends EventEmitter {
     }
 }
 
-// module.exports.WorkflowRepo = new MockRepo(MOCK_WORKFLOWS, 5);
-// module.exports.SerivceRepo = new MockRepo(MOCK_SERVICES, 2);
-// module.exports.UserRepo = new MockRepo(MOCK_USERS, 5);
-// module.exports.UserAuthRepo = new MockRepo(MOCK_USERS_AUTH, 5);
+module.exports.MockWorkflowRepo = new MockRepo(MOCK_WORKFLOWS, 5);
+module.exports.SerivceRepo = new MockRepo(MOCK_SERVICES, 2);
+module.exports.UserRepo = new MockRepo(MOCK_USERS, 5);
+module.exports.UserAuthRepo = new MockRepo(MOCK_USERS_AUTH, 5);
 
 module.exports.MockRepo = MockRepo;

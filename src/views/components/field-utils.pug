@@ -1,11 +1,14 @@
--
-    const status_colors = {
-        'on': '#00bf1b',
-        'off': '#a9a9a9',
-        'notif': '#f7c778',
-        'err': '#db5961'
-    };
+
+
+// States:
+    0 - not executed
+    1 - fail
+    2 - running
+    3 - success
 mixin prettystatus(status)
+    -
+        const state_colors = [ '#a9a9a9', '#00bf1b', '#f7c778', '#db5961']
+        const state_str = ['Not executed yet', 'Error', 'Running', 'Success'];
     span(
-        style={color: status_colors[status], "text-decoration": 'underline'}
-    )= status
+        style={color: state_colors[status], "text-decoration": 'underline'}
+    )= state_str[status]

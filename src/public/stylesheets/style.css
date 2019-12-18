@@ -41,3 +41,20 @@ a {
   color: crimson;
   border-color: crimson;
 }
+
+.dash-wf-container {
+  padding: 10px;
+  border-bottom: 1px solid black;
+  margin: 5px;
+}
+.dash-wf {
+  display: flex;
+  flex-direction: column;
+}
+.field {
+  margin: 0.2rem;
+  border-left: 1px solid black;
+}
+.service-field {
+  color: darkgrey;
+}

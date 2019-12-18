@@ -47,7 +47,7 @@ app.use(auth({
   required: false,
   // auth0Logout: true,
   baseURL: 'https://localhost:3000',
-  issuerBaseURL: 'https://lcoalhost:5001',
+  issuerBaseURL: 'https://localhost:5001',
   clientID: 'bijector.ng-front',
   authorizationParams: {
     response_type: "id_token token",

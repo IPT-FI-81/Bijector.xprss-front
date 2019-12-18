@@ -9,9 +9,12 @@ class WFRepo extends EventEmitter {
     getAll() {
         return new Promise((resolve, reject) => {
             let config = {
-
+                url: wf_api_base_url + '/Workflows/GetAll',
+                headers: {
+                    'Bearer': process.env.OAUTH_ACCESS_TOKEN
+                }
             };
-            request(wf_api_base_url + '/Workflows/GetAll', config, (err, res, body) => {
+            request(config,(err, res, body) => {
                 if (err) {
                     reject(err);
                 } else {

@@ -1,6 +1,8 @@
 const {MOCK_WORKFLOWS, MOCK_USERS_AUTH, MOCK_USERS, MOCK_SERVICES} = require('./mock-data');
 const EventEmitter = require('events');
 
+const request = require('request');
+
 const THROTTLE = 500;
 
 function clone(a) {
@@ -90,9 +92,30 @@ class MockRepo extends EventEmitter {
     }
 }
 
-module.exports.WorkflowRepo = new MockRepo(MOCK_WORKFLOWS, 5);
-module.exports.SerivceRepo = new MockRepo(MOCK_SERVICES, 2);
-module.exports.UserRepo = new MockRepo(MOCK_USERS, 5);
-module.exports.UserAuthRepo = new MockRepo(MOCK_USERS_AUTH, 5);
+const wf_api_base_url = "https://localhost:5010";
+
+class WFRepo extends EventEmitter {
+
+    getAll() {
+        return new Promise((resolve, reject) => {
+            let config = {
+
+            };
+            request(wf_api_base_url + '/Workflows/GetAll', config, (err, res, body) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log('WFRepo.getAll res body:', body);
+                    resolve(body)
+                }
+            })
+        })
+    }
+}
+
+// module.exports.WorkflowRepo = new MockRepo(MOCK_WORKFLOWS, 5);
+// module.exports.SerivceRepo = new MockRepo(MOCK_SERVICES, 2);
+// module.exports.UserRepo = new MockRepo(MOCK_USERS, 5);
+// module.exports.UserAuthRepo = new MockRepo(MOCK_USERS_AUTH, 5);
 
 module.exports.MockRepo = MockRepo;

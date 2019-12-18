@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .dash-wf-container
+    for wf in workflows
+        .dash-wf
+            a(href=`/workflow/${wf.id}`).dash-wf-title= wf.title
+            .field.service-field= `[ID: ${wf.id}]`
+            .field= `Last executed: ${wf.last_executed}`
+            .field Status:
+                +prettystatus(wf.status)
+            div
+                a.btn(href=`/workflow/${wf.id}`) Details
+                a.btn.btn-danger(href=`/workflow/${wf.id}/delete`) Delete

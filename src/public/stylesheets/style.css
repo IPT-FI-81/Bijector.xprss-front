@@ -1,0 +1,43 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.btn-lg {
+  padding: 15px;
+  margin: 5px;
+  border: solid black 1px;
+  border-radius: 5px;
+  color: black;
+  text-decoration: none;
+  font-size: 1.25em;
+}
+
+.btn-lg:hover {
+  color: #00B7FF;
+  border-color: #00B7FF;
+}
+
+.btn {
+  padding: 5px;
+  margin: 5px;
+  border: solid black 1px;
+  border-radius: 3px;
+  color: black;
+  text-decoration: none;
+}
+.btn:hover {
+  color: #00B7FF;
+  border-color: #00B7FF;
+}
+.btn:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.btn-danger {
+  color: crimson;
+  border-color: crimson;
+}

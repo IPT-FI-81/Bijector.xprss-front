@@ -1,0 +1,15 @@
+include field
+
+mixin Form(form)
+    .form
+        if form.title
+            h3=form.title
+        form(
+            if form.name
+                id= `form-${form.name}`
+            action= form.action
+            method= form.method
+        )&attributes(form.attr)
+            each f in form.fields
+                +Field(form, f)
+            input(type='submit')

@@ -1,0 +1,15 @@
+include components/form
+include components/field-utils
+
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    if toolbar
+      .toolbar
+        each i in toolbar
+          a.toolbar-btn(href=i.href)= i.label
+    h1= title
+    block content

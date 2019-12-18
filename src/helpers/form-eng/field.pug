@@ -1,0 +1,24 @@
+mixin Field(form, field)
+    -
+        const attr = {
+            name: field.name,
+            id: `form-${form.name}-${field.name}`,
+            disabled: field.disabled || false,
+            value: field.value || null
+        };
+    .field: case field.type
+        when 'select'
+            select&attributes(attr)&attributes(field.attr)
+                each o in field.options
+                    option(value= o.val)= o.label
+        when 'string'
+        when 'password'
+        when 'number'
+            label(for= attr.id)= field.label
+            input(
+                type= field.type
+            )&attributes(attr)&attributes(field.attr)
+        when 'meta'
+            input(
+                type= 'hidden'
+            )&attributes(attr)&attributes(field.attr)

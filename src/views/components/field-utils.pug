@@ -1,0 +1,11 @@
+-
+    const status_colors = {
+        'on': '#00bf1b',
+        'off': '#a9a9a9',
+        'notif': '#f7c778',
+        'err': '#db5961'
+    };
+mixin prettystatus(status)
+    span(
+        style={color: status_colors[status], "text-decoration": 'underline'}
+    )= status

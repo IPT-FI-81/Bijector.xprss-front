@@ -1,0 +1,6 @@
+extends layout
+
+block content
+    if error
+        .error= error
+    +Form(form)

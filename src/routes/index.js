@@ -6,11 +6,11 @@ const db = require('../connectors/fakeback');
 
 /* GET dashboard or index. */
 router.get('/', function (req, res, next) {
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
         console.debug(`user ${req.session.username} is authenticated`);
         workflows = db.WorkflowRepo.getAll().then(wfs => {
             res.render('dashboard', {
-                title: 'Dashboard',
+                title: `Dashboard (${req.openid.user.name})`,
                 workflows: wfs
             })
         });
@@ -19,10 +19,10 @@ router.get('/', function (req, res, next) {
     }
 });
 
-router.get('/logout', (req, res) => {
-    req.session = null;
-    res.redirect('/');
-});
+// router.get('/logout', (req, res) => {
+//     req.session = null;
+//     res.redirect('/');
+// });
 
 const loginform = {
     action: "/login",
@@ -32,14 +32,14 @@ const loginform = {
         { type: "password", name: "password", label: "password" },
     ]
 };
-
-router.get('/login', function (req, res) {
-    if (req.isAuthenticated) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login', {title: 'Login', form: loginform})
-});
+//
+// router.get('/login', function (req, res) {
+//     if (req.isAuthenticated()) {
+//         res.redirect('/');
+//         return;
+//     }
+//     res.render('login', {title: 'Login', form: loginform})
+// });
 
 router.post('/login', (req, res) => {
     if (req.body.username && req.body.password) {

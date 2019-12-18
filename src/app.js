@@ -46,8 +46,8 @@ app.use(session({
 app.use(auth({
   required: false,
   // auth0Logout: true,
-  baseURL: 'https://localhost:3000',
-  issuerBaseURL: 'https://localhost:5001',
+  baseURL: 'http://localhost:3000',
+  issuerBaseURL: 'http://localhost:5000',
   clientID: 'bijector.ng-front',
   authorizationParams: {
     response_type: "id_token token",

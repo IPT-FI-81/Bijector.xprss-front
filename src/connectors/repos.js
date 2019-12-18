@@ -2,10 +2,9 @@ const EventEmitter = require('events');
 
 const request = require('request');
 
-const wf_api_base_url = "https://localhost:5010";
+const wf_api_base_url = "https://workflows:5010";
 
 class WFRepo extends EventEmitter {
-
     getAll() {
         return new Promise((resolve, reject) => {
             let config = {

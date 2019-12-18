@@ -6,8 +6,10 @@ block content
         .dash-wf
             a(href=`/workflow/${wf.Id}`).dash-wf-title= wf.Name
             .field.service-field= `[ID: ${wf.Id}]`
-            .field= `description: ${wf.Description}`
-            .field.service-field= `current executed node id: ${wf.CurrentNodeId}`
+            if wf.Description
+                .field= `description: ${wf.Description}`
+            if wf.CurrentNodeId
+                .field.service-field= `current executed node id: ${wf.CurrentNodeId}`
             .field Status:
                 +prettystatus(wf.State)
             div

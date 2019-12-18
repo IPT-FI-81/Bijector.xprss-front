@@ -2,13 +2,15 @@ const express = require('express');
 const router = express.Router();
 const debug = require('debug')('routes:index');
 const auth = require('../helpers/auth');
-const db = require('../connectors/repos');
+
+const db = process.env.MOCK ? require('../connectors/fakeback') : require('../connectors/repos');
+const WorkflowRepo = db.WorkflowRepo;
 
 /* GET dashboard or index. */
 router.get('/', function (req, res, next) {
     if (req.isAuthenticated) {
         console.debug(`user ${req.session.username} is authenticated`);
-        db.WorkflowRepo.getAll().then(wfs => {
+        WorkflowRepo.getAll().then(wfs => {
             res.render('dashboard', {
                 title: `Dashboard (${req.session.token})`,
                 workflows: wfs
@@ -32,8 +34,8 @@ const loginform = {
     action: "/login",
     method: "post",
     fields: [
-        { type: "string", name: "username", label: "username" },
-        { type: "password", name: "password", label: "password" },
+        {type: "string", name: "username", label: "username"},
+        {type: "password", name: "password", label: "password"},
     ]
 };
 

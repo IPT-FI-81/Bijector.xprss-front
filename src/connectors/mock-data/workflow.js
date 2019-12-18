@@ -5,16 +5,16 @@
 let MOCK_WORKFLOWS = [
 // export let MOCK_WORKFLOWS: Workflow[] = [
   {
-    id: "1",
-    title: "Bj1",
+    Id: "1",
+    Name: "Bj1",
     nodes: [
       {
-        id: "1",
+        Id: "1",
         action: {
-          title: "Send msg",
+          Name: "Send msg",
           service: {
-            id: "1",
-            title: "NotTg"
+            Id: "1",
+            Name: "NotTg"
           },
           arguments: [
             ["who", "Dana Skully"],
@@ -23,12 +23,12 @@ let MOCK_WORKFLOWS = [
         }
       },
       {
-        id: "2",
+        Id: "2",
         action: {
-          title: "Send msg",
+          Name: "Send msg",
           service: {
-            id: "1",
-            title: "NotTg"
+            Id: "1",
+            Name: "NotTg"
           },
           arguments: [
             ["who", "Fox Mulder"],
@@ -37,21 +37,21 @@ let MOCK_WORKFLOWS = [
         }
       }
     ],
-    last_executed: "3/4/2014 midnight",
-    icon_id: "1",
-    status: "on",
+    last_executed: "3/4/2014 mIdnight",
+    IconId: "1",
+    State: 0,
   },
   {
-    id: "2",
-    title: "Bj2",
+    Id: "2",
+    Name: "Bj2",
     nodes: [
       {
-        id: "3",
+        Id: "3",
         action: {
-          title: "Send msg",
+          Name: "Send msg",
           service: {
-            id: "1",
-            title: "NotTg"
+            Id: "1",
+            Name: "NotTg"
           },
           arguments: [
             ["who", "Dana Skully"],
@@ -60,12 +60,12 @@ let MOCK_WORKFLOWS = [
         }
       },
       {
-        id: "4",
+        Id: "4",
         action: {
-          title: "Send msg",
+          Name: "Send msg",
           service: {
-            id: "1",
-            title: "NotTg"
+            Id: "1",
+            Name: "NotTg"
           },
           arguments: [
             ["who", "Fox Mulder"],
@@ -75,22 +75,22 @@ let MOCK_WORKFLOWS = [
       }
     ],
     last_executed: "3/4/2020 afternoon",
-    icon_id: "2",
-    status: "off",
+    IconId: "2",
+    State: 1,
   },
   {
-    id: "3",
-    title: "Long Name Workflow 3",
+    Id: "3",
+    Name: "Long Name Workflow 3",
     nodes: [],
-    icon_id: "3",
-    status: "err",
+    IconId: "3",
+    State: 2,
   },
   {
-    id: "4",
-    title: "Bj4",
+    Id: "4",
+    Name: "Bj4",
     nodes: [],
-    // icon_id: "4", - No icon
-    status: "notif",
+    // IconId: "4", - No icon
+    State: 3,
   },
 ];
 
